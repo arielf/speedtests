@@ -31,8 +31,8 @@ The data below, collected over different times, using various services, speaks f
 
 Notes:
 
-- All the blue points at the right half of the chart are Comcast data-points. The very top (blue) ones correspond to speedtest.xfinity.com, the slightly lower ones, correspond to a further Comcast data-center (in San Francisco).
-- All independent internet providers fall to the left of the center (<5.0 Mbps upload speeds). Also note that all the non-Comcast ping round-trip times (packet latency) are higher than the Comcast ones.
+- All the blue points at the top-right quarter of the chart are Comcast data-points. The very top (blue) ones correspond to speedtest.xfinity.com, the slightly lower ones, correspond to a further-away Comcast data-center.
+- All independent internet speed-test providers, except one fall to the left of the center (<5.0 Mbps upload speeds). Also note that all the non-Comcast ping round-trip times (packet latency) are higher than the Comcast ones.
 
 ## References:
 
