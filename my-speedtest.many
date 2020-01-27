@@ -1,0 +1,99 @@
+#!/usr/bin/perl -w
+#
+# Internet speed tests
+#
+my $TopN = 20;
+my @ServerIds = ();
+my %Id2Provider = ();
+
+#
+# Ignore inconsistent and way-off outliers
+#
+my @UnreliableServers = qw(
+    T-Mobile
+    SRCC-Networking
+    CodecCloudLimited
+    Jefferson.Union
+);
+my $UnreliableServers = sprintf('(%s)', join('|', @UnreliableServers));
+
+sub closest_n_servers($) {
+    my $n = shift;
+    my @server_ids = ();
+
+    my $good_count = 0;
+    open(my $inp, "speedtest --list |");
+    while (my $line = <$inp>) {
+        next if ($line =~ /$UnreliableServers/o);
+
+        if ($line =~ /^\s*(\d+)\)\s*(.*?) \[([0-9.]+) km/) {
+            my ($server_id, $provider, $distance) = ($1, $2, $3);
+            $provider =~ s/\s*\([^)]+\)\s*//g;
+
+            push(@server_ids, $server_id);
+            $Id2Provider{$server_id} = $provider;
+            $Id2Distance{$server_id} = $distance;
+
+            $good_count++;
+            # printf STDERR "%s\t%s\t%s km\n", $server_id, $provider, $distance;
+        }
+        last if ($good_count >= $n);
+    }
+    close $inp;
+    @server_ids;
+}
+
+sub ymd_hm() {
+    my $ymd_hm = qx{date '+%Y-%m-%d-%H:%M'};
+    chomp($ymd_hm);
+    $ymd_hm;
+}
+
+sub ping_up_down($) {
+    my $server_id = shift;
+    my $ouptut = qx{speedtest --server $server_id --simple};
+    my ($ping_time)     = ($ouptut =~ /Ping:\s*([0-9.]+)/);
+    my ($up_speed)      = ($ouptut =~ /Upload:\s*([0-9.]+)/);
+    my ($down_speed)    = ($ouptut =~ /Download:\s*([0-9.]+)/);
+
+    ($ping_time, $up_speed, $down_speed);
+}
+
+sub speed_test($) {
+    my $server_id = shift;
+
+    my $ymd_hm = ymd_hm();
+    my ($ping, $up_speed, $down_speed) = ping_up_down($server_id);
+    printf "%s\t%.02f\t%.02f\t%.02f\t%s\n",
+            $ymd_hm, $ping, $up_speed, $down_speed,
+            "$Id2Provider{$server_id} ($Id2Distance{$server_id} km)"
+}
+
+
+#
+# -- main
+#
+@ServerIds = closest_n_servers($TopN);
+
+for my $server_id (@ServerIds) {
+    speed_test($server_id);
+}
+
+# Example of server-list data, 
+__DATA__
+14204) Frontier (Palo Alto, CA, United States) [7.24 km]
+29639) SRCC-Networking (Palo Alto, CA, United States) [7.24 km]
+12818) Ridge Wireless (Cupertino, CA, United States) [9.97 km]
+18007) T-Mobile (Santa Clara, CA, United States) [14.83 km]
+11613) KamaTera INC (Santa Clara, CA, United States) [14.83 km]
+25606) Next Level Networks (Santa Clara, CA, United States) [14.83 km]
+24934) Razzolink Inc (San Jose, CA, United States) [21.15 km]
+ 6468) Tekify Fiber & Wireless (Fremont, CA, United States) [22.08 km]
+21231) CodecCloud(HK)Limited (Fremont, CA, United States) [22.08 km]
+26912) Vpassion (Fremont, CA, United States) [22.08 km]
+27781) Converse in Code Networks (Fremont, CA, United States) [22.08 km]
+17846) Sonic.net, Inc. (San Jose, CA, United States) [23.41 km]
+15786) Sprint (San Jose, CA, United States) [23.41 km]
+11899) Janus Networks (San Jose, CA, United States) [23.41 km]
+ 6349) Cruzio (Santa Cruz, CA, United States) [46.05 km]
+
