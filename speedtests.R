@@ -20,7 +20,9 @@ argv0   <- basename(
 # Data-file (last *.tsv arg)
 argvN   <- abspath(Args[length(Args)])
 
+# I use a certain to view on Linux, YMMV
 Viewer = 'nomacs'
+
 ChartFile = sprintf("/tmp/%s.png", argv0)
 
 Title = 'Speed Test Data\n(circle-size: log(pingtime))'
@@ -34,9 +36,9 @@ Width = 20
 Height = 16
 
 MyColors = c(
-    'red', 'green', 'pink', 'dodgerblue1', 'grey70',
+    'red', 'green', 'pink', 'skyblue', 'grey70',
     'magenta', 'orangered2', 'violet', 'chartreuse', 'darkorange1',
-    'mediumpurple1', 'orange', 'thistle1', 'dodgerblue2', 'dodgerblue3',
+    'mediumpurple1', 'orange', 'thistle1', 'dodgerblue1', 'dodgerblue3',
     'deeppink', 'forestgreen', 'gold', 'gold2', 'orchid1',
     'deeppink2'
 )
