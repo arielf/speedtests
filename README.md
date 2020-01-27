@@ -1,6 +1,6 @@
-# Comcast speed data
+# Internet speed data
 
-This repository [arielf/comcast-speedtests](git://github.com/arielf/comcast-speedtests) contains data about internet speeds.
+This repository [arielf/speedtests](git://github.com/arielf/speedtests) contains data about internet speeds.
 
 
 ## Summary
