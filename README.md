@@ -1,6 +1,6 @@
 # Internet speed data
 
-This repository [arielf/speedtests](git://github.com/arielf/speedtests) contains data about internet speeds.
+This repository [github.com://arielf/speedtests](https://github.com/arielf/speedtests) contains data about internet speeds.
 
 
 ## Summary
