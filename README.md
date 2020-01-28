@@ -1,6 +1,11 @@
 # Internet speed data
 
-This repository [github.com://arielf/speedtests](https://github.com/arielf/speedtests) contains data about internet speeds.
+This repository [github.com://arielf/speedtests](https://github.com/arielf/speedtests) contains data about internet speeds. 
+
+- To generate a scatter-plot (example below) from the `speedtests.tsv` file , use the `speedtests.R` script.
+- `speedtests.R` depends on `R` + the `data.table` & `ggplot2` libraries 
+- To obtain a data-set, you'll need the prereq Ubuntu command-line `speedtest` utility.
+- See `Makefile` for the full flow.
 
 
 ## Summary
