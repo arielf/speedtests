@@ -1,13 +1,28 @@
 #!/usr/bin/perl -w
 #
-# Internet speed tests
+# Generate the a data-set of internet speeds.
+#
+# Output is in tsv format, with headers:
+#
+#   DateTime  Ping  Up  Down  Provider
+#
+# How:
+#   - Runs Ubuntu command-line 'speedtest' on the closest N speedtest providers
+#   - Does some minor filtering of a few providers that have issues.
+#   - Pretty-prints the results in compact TSV format
+#
+# To install the prerequisite command-line speedtest on Ubuntu, use:
+#   sudo apt-get install speedtest-cli
+#
+# To read the docs after installation:
+#   man speedtest
 #
 my $TopN = 20;
 my @ServerIds = ();
 my %Id2Provider = ();
 
 #
-# Ignore inconsistent and way-off outliers
+# Ignore some inconsistent, unreliable (e.g. causing errors) outliers
 #
 my @UnreliableServers = qw(
     T-Mobile
@@ -78,22 +93,4 @@ sub speed_test($) {
 for my $server_id (@ServerIds) {
     speed_test($server_id);
 }
-
-# Example of server-list data, 
-__DATA__
-14204) Frontier (Palo Alto, CA, United States) [7.24 km]
-29639) SRCC-Networking (Palo Alto, CA, United States) [7.24 km]
-12818) Ridge Wireless (Cupertino, CA, United States) [9.97 km]
-18007) T-Mobile (Santa Clara, CA, United States) [14.83 km]
-11613) KamaTera INC (Santa Clara, CA, United States) [14.83 km]
-25606) Next Level Networks (Santa Clara, CA, United States) [14.83 km]
-24934) Razzolink Inc (San Jose, CA, United States) [21.15 km]
- 6468) Tekify Fiber & Wireless (Fremont, CA, United States) [22.08 km]
-21231) CodecCloud(HK)Limited (Fremont, CA, United States) [22.08 km]
-26912) Vpassion (Fremont, CA, United States) [22.08 km]
-27781) Converse in Code Networks (Fremont, CA, United States) [22.08 km]
-17846) Sonic.net, Inc. (San Jose, CA, United States) [23.41 km]
-15786) Sprint (San Jose, CA, United States) [23.41 km]
-11899) Janus Networks (San Jose, CA, United States) [23.41 km]
- 6349) Cruzio (Santa Cruz, CA, United States) [46.05 km]
 
