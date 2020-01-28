@@ -20,10 +20,10 @@ argv0   <- basename(
 # Data-file (last *.tsv arg)
 argvN   <- abspath(Args[length(Args)])
 
-# I use a certain to view on Linux, YMMV
+# I use a certain utility to view on Linux, YMMV
 Viewer = 'nomacs'
 
-ChartFile = sprintf("/tmp/%s.png", argv0)
+ChartFile = sprintf("%s.png", if (nchar(argvN)) argvN else argv0)
 
 Title = 'Speed Test Data\n(circle-size: log(pingtime))'
 
@@ -63,12 +63,12 @@ theme_mine <- function() {
 }
 
 #
-# Data headers:
-#       DateTime  Ping  Up  Down  Provider
+# Read the data into a data.table
 #
-data_cmd <- sprintf("grep -v '^$' %s", argvN)
-
-d = fread(data_cmd, sep='\t', h=T)
+column_names = c('DateTime', 'Ping', 'Up', 'Down', 'Provider')
+data_cmd <- sprintf("grep '^[1-9]' %s", argvN)
+d = fread(data_cmd, sep='\t', h=F)
+setnames(d, column_names)
 
 g <- ggplot(d, aes(x=Up, y=Down, label=Provider, fill=Provider)) +
     ggtitle(Title) +
@@ -101,6 +101,7 @@ ggsave(
     width=Width,
     height=Height,
 )
+eprintf("Saved chart in %s\n", ChartFile)
 
 systemf("%s %s 2>/dev/null &", Viewer, ChartFile)
 
