@@ -2,10 +2,15 @@
 
 This repository [github.com://arielf/speedtests](https://github.com/arielf/speedtests) contains data about internet speeds. 
 
-- To generate a scatter-plot (example below) from the `speedtests.tsv` file , use the `speedtests.R` script.
-- `speedtests.R` depends on `R` + the `data.table` & `ggplot2` libraries 
+## HOWTO
+
 - To obtain a data-set, you'll need the prereq Ubuntu command-line `speedtest` utility.
+- The `my-speedtest.many` script generates a N-row data-set on the closest N speedtest supported data-centers
+- To generate a scatter-plot (example below) from a speedtests `*.tsv` file , use the `speedtests.R` script.
+- `speedtests.R` depends on `R` + the `data.table` & `ggplot2` libraries
+- `speedtests.R` uses `nomacs` to view the generated chart. YMMV. Change it to your favorite viewer or ignore the error.
 - See `Makefile` for the full flow.
+- TLDR: once you have all prereqs installed, just type `make`
 
 
 ## Summary
