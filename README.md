@@ -71,6 +71,9 @@ _In reality, the speed claimed by Comcast is *not representative of real average
 
 _The service levels are *significantly worse* than advertised, when accessing most or even all parts of the internet (other than Comcast dedicated & misleading speedtest sites)_
 
+Using the code and instructions above on Ubuntu Linux or similar, anyone can repeat my experiment. I encourage readers to download and share their results so we have a larger sample. Please share what is the speed Comcast (or any other ISP) says you're getting, vs what you actually get in this experiment.
+
+
 ## References:
 
 - [A similar experience by another Comcast subscriber on xfinity forums](https://forums.xfinity.com/t5/Your-Home-Network/Proof-Comcast-Throttling-Internet-Speeds/td-p/3056103)
