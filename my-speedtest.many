@@ -77,6 +77,8 @@ sub ping_up_down($) {
 sub speed_test($) {
     my $server_id = shift;
 
+    printf STDERR "- %s ...\n", $Id2Provider{$server_id};
+
     my $ymd_hm = ymd_hm();
     my ($ping, $up_speed, $down_speed) = ping_up_down($server_id);
     printf "%s\t%.02f\t%.02f\t%.02f\t%s\n",
@@ -88,6 +90,8 @@ sub speed_test($) {
 #
 # -- main
 #
+printf STDERR "Collecting speed data on %u data-centers...\n", $TopN;
+
 @ServerIds = closest_n_servers($TopN);
 
 for my $server_id (@ServerIds) {
