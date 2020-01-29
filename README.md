@@ -4,13 +4,30 @@ This repository [github.com://arielf/speedtests](https://github.com/arielf/speed
 
 ## HOWTO
 
-- To obtain a data-set, you'll need the prereq Ubuntu command-line `speedtest` utility.
-- The `my-speedtest.many` script generates a N-row data-set on the closest N speedtest supported data-centers
-- To generate a scatter-plot (example below) from a speedtests `*.tsv` file , use the `speedtests.R` script.
+    # Install prerequisites
+    sudo apt-get install make perl speedtest-cli r-base r-recommended r-cran-data.table r-cran-ggplot2 r-cran-scales
+
+    # Clone this repository, and cd to it
+    git clone https://github.com/arielf/speedtests
+    cd speedtests
+
+    # Generate a N-row data-set on the N-closest speedtest supporting data-centers
+    ./my-speedtest.many > mydata.tsv
+    
+    # Generate a chart from the data-set
+    ./speedtests.R mydata.tsv
+
+    # Chart should now be in "mydata.tsv.png"
+
+##### flow explanation:
+
+-  The `speedtest` utility (`apt install speedtest-cli`) collects speed data from various data-centers
+- `my-speedtest.many` is a perl-script wrapper around `speedtest`. It figures out the closest N data-centers & checks your speed against each of them.
+- `speedtests.R` is an R script to generate a chart from the data-set
 - `speedtests.R` depends on `R` + the `data.table` & `ggplot2` libraries
-- `speedtests.R` uses `nomacs` to view the generated chart. YMMV. Change it to your favorite viewer or ignore the error.
+- `speedtests.R` tries to call `nomacs` to view the generated chart. YMMV. Change it to your favorite image viewer or ignore the error at the end.
 - See `Makefile` for the full flow.
-- TLDR: once you have all prereqs installed, just type `make`
+- TLDR: if you have all prereqs installed, just type `make`
 
 
 ## Summary
