@@ -7,6 +7,8 @@ This repository [github.com://arielf/speedtests](https://github.com/arielf/speed
 
 See [README.md](README.md)
 
+Using the code and instructions above on Ubuntu Linux or similar, anyone can repeat my experiment. I encourage readers to download and share their results so we have a larger sample. Please share what is the speed Comcast (or any other ISP) says you're getting, vs what you actually get in this experiment.
+
 ## Empirical speed-data chart
 
 ![Chart of speed-tests](speedtests.png)
@@ -20,6 +22,7 @@ See [README.md](README.md)
 - In reality, nothing changed...  I was still seeing the usual ~90Mbps down, so I was happy.
 - A few weeks later, I noticed a significant service degradation. When I checked the Comcast site, I saw that something changed in the Comcast system. My plan became "Up to 75Mbps". Rather than staying at ~90 Mbps as it has been for years, The speeds I get went sharply down, and are now much less than the claimed "75Mbps".
 - In essence Comcast is forcing me to pay them more by throttling my speeds down. If I want my old speed back, I will have to pony-up and explicitly ask Comcast for a higher speed.
+- All the Comcast (Xfinity) published higher-plans include additional services. Double-play adds cable-TV, triple-play adds cable-TV and phone. I'm not interested in these services. How can I pay fair price for what Comcast gave me, pure-internet access at reasonable speeds, for many years without their forcing me into more services and higher price?
 - This is what prompted me to publish my story.
 
 ## Bottom line
