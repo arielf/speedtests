@@ -1,7 +1,6 @@
 # Internet speed data - my Comcast experience
 
-This repository [github.com://arielf/speedtests](https://github.com/arielf/speedtests) contains data about internet speeds.
-
+This repository [github.com://arielf/speedtests](https://github.com/arielf/speedtests) contains data about internet-speeds plus code allowing anyone to reproduce the results.
 
 ## Summary
 
