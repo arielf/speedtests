@@ -51,7 +51,7 @@ How much worse?
 - Average upload speeds are roughly 2x worse
 - Average ping round-trips are roughly 3x to 6x times worse
 
-The data below, collected over different times, using various services, speaks for itself. The explanation is left for the reader.
+The data below, collected over different times, using various services, speaks for itself.
 
 [Raw speed-test data (TSV format)](speedtests.tsv)
 
