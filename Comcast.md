@@ -10,7 +10,7 @@ Using the code and instructions above on Ubuntu Linux or similar, anyone can rep
 
 ## Empirical speed-data chart
 
-![Chart of speed-tests](speedtests.png)
+![Chart of speed-tests](speedtests-annotated.png)
 
 ## My recent experience with Comcast
 

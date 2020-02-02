@@ -55,7 +55,7 @@ The data below, collected over different times, using various services, speaks f
 
 [Raw speed-test data (TSV format)](speedtests.tsv)
 
-![Chart of speed-tests](speedtests.png)
+![Chart of speed-tests](speedtests-annotated.png)
 
 ## Notes:
 
