@@ -15,7 +15,7 @@ Using the code and instructions above on Ubuntu Linux or similar, anyone can rep
 ## My recent experience with Comcast
 
 - I used to be generally happy with Comcast service, except for the fact they have no real competition (on speeds) where I live.
-- In the past, I used to see consistent speeds between Comcast speedtest sites and other independent speedtest site in the Bay Area. I was seeing ~90Mbps down and 5.5MBps up pretty consistently, regardless of which speed-test service I used.
+- In the past, I used to see consistent speeds between Comcast speedtest sites and other independent speedtest site in the Bay Area. I was seeing ~90Mbps down and 5.5Mbps up pretty consistently, regardless of which speed-test service I used.
 - In Oct 2018, Comcast raised my bill from $64.95/month, to $81.95/month (a 26% hike). When I objected to the price hike, their rep told me I'm on a 'extreme' plan, giving me "up to 150Mbs" down. Since I've never seen this speed from Comcast, not even vs their own speed-test, I objected to the price hike saying all I ask of them is to leave the price and service as-is ($64.95/month for ~90Mbps down). Once I complained, they cancelled the price hike. Service remained good for a while.
 - In Sep 2019, I got an email from Comcast saying (quote): ***"The download speed included with your current Xfinity Internet plan has been increased from 150/5 Mbps to 175/5 Mbps. We know how important your network is to you, and we want to thank you for choosing us to be your trusted Internet provider."***
 - In reality, nothing changed...  I was still seeing the usual ~90Mbps down, so I was happy.
