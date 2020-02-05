@@ -25,8 +25,8 @@ This repository [github.com://arielf/speedtests](https://github.com/arielf/speed
 -  The `speedtest` utility (`apt install speedtest-cli`) collects speed data from various data-centers
 - `my-speedtest.many` is a perl-script wrapper around `speedtest`. It figures out the closest N data-centers & checks the speed to each of them.
 - `speedtests.R` is an R script to generate a chart from the data-set
-- `speedtests.R` depends on `R` + the `data.table` & `ggplot2` libraries
-- `speedtests.R` tries to call `nomacs` to view the generated chart. YMMV. Change it to your favorite image viewer or ignore the error at the end.
+- `speedtests.R` depends on `R` + the R libraries `data.table`, `ggplot2`, & `scales`
+- `speedtests.R` calls `nomacs` to view the generated chart. YMMV. Change it to your favorite image viewer or ignore the error at the end.
 - See `Makefile` for the full flow.
 - TLDR: if you have all prereqs installed, just type `make`
 
