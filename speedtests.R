@@ -67,7 +67,7 @@ theme_mine <- function() {
 #
 column_names = c('DateTime', 'Ping', 'Up', 'Down', 'Provider')
 data_cmd <- sprintf("grep '^[1-9]' %s", argvN)
-d = fread(data_cmd, sep='\t', h=F)
+d = fread(cmd=data_cmd, sep='\t', h=F)
 setnames(d, column_names)
 
 g <- ggplot(d, aes(x=Up, y=Down, label=Provider, fill=Provider)) +
