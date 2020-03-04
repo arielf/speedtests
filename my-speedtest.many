@@ -81,6 +81,10 @@ sub speed_test($) {
 
     my $ymd_hm = ymd_hm();
     my ($ping, $up_speed, $down_speed) = ping_up_down($server_id);
+    unless (defined $down_speed) {
+        warn "failed to get speedtest data for $server_id\n";
+        return;
+    }
     printf "%s\t%.02f\t%.02f\t%.02f\t%s\n",
             $ymd_hm, $ping, $up_speed, $down_speed,
             "$Id2Provider{$server_id} ($Id2Distance{$server_id} km)"
