@@ -32,6 +32,19 @@ my @UnreliableServers = qw(
 );
 my $UnreliableServers = sprintf('(%s)', join('|', @UnreliableServers));
 
+sub v {
+    if (@_ == 1) {
+        print STDERR @_;
+    } else {
+        printf STDERR @_;
+    }
+}
+
+sub init {
+    # trim program name to its basename
+    $0 =~ s{.*/}{};
+}
+
 sub closest_n_servers($) {
     my $n = shift;
     my @server_ids = ();
@@ -82,7 +95,8 @@ sub speed_test($) {
     my $ymd_hm = ymd_hm();
     my ($ping, $up_speed, $down_speed) = ping_up_down($server_id);
     unless (defined $down_speed) {
-        warn "failed to get speedtest data for $server_id\n";
+        my $provider = $Id2Provider{$server_id};
+        v("$0: failed to get speedtest data for $provider\n");
         return;
     }
     printf "%s\t%.02f\t%.02f\t%.02f\t%s\n",
@@ -94,6 +108,8 @@ sub speed_test($) {
 #
 # -- main
 #
+init();
+
 printf STDERR "Collecting speed data on %u data-centers...\n", $TopN;
 
 @ServerIds = closest_n_servers($TopN);
