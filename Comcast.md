@@ -26,9 +26,11 @@ Using the code and instructions above on Ubuntu Linux or similar, anyone can rep
 
 ## Update 2020-03-22
 
-I have upgraded my home network to 1-Gbps speeds (Modem, router, switches) _and_ upgraded my Comcast plan by two tiers up (aka the "Performance Pro" tier).
+I have upgraded my home network to 1-Gbps speeds (modem, router, switches) _and_ upgraded my Comcast plan by two tiers up ("Performance Pro" tier).
 
-The good news is that I now see higher down-speeds and greater consistency across sites. The bad news is that upload speeds have not budged and are still an abysmal 2.5Mbps.
+The good news is that I now see higher download speeds + greater consistency across sites.
+
+The bad news is that **upload** speeds are still an abysmal 2.5Mbps.
 
 ## Bottom line
 
@@ -36,7 +38,7 @@ _In reality, the speed claimed by Comcast is *not representative of real average
 
 _The service levels at lower-tiers, are *significantly worse* when accessing most or even all parts of the internet (except Comcast dedicated and misleading speedtest sites)_
 
-_Even after upgrading the plan by two tiers, The biggest pain is Upload speeds. They are abysmal. Over 50% slower than what they used to be in the past at the lowest basic tier._
+_Even after upgrading the plan by two tiers, The biggest pain is upload speeds. They are abysmal. Over 50% slower than what they used to be in the past at the lowest basic tier._
 
 _Comcast is throttling speeds down in order to push customers to higher-priced plans_
 
