@@ -1,7 +1,8 @@
 YMD = $(shell date +%Y-%m-%d)
 LOGNAME = $(shell logname)
-DATA_FILE = $(LOGNAME).$(YMD).tsv
-CHART_FILE = $(LOGNAME).$(YMD).png
+DATA_DIR = ./Data
+DATA_FILE = $(DATA_DIR)/$(LOGNAME).$(YMD).tsv
+CHART_FILE = $(DATA_DIR)/$(LOGNAME).$(YMD).png
 
 all:: data chart
 
@@ -11,6 +12,7 @@ $(DATA_FILE): my-speedtest.many
 	#
 	# Collect internet speed data into $(DATA_FILE)
 	#
+	mkdir -p $(DATADIR)
 	./my-speedtest.many > $(DATA_FILE)
 
 chart: speedtests.R $(DATA_FILE)
