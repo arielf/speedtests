@@ -18,7 +18,7 @@ argv0   <- basename(
                     grep('^--file=', Args, value=T)))
 
 # Data-file (last *.tsv arg)
-argvN   <- abspath(Args[length(Args)])
+argvN   <- Args[length(Args)]
 
 # I use a certain utility to view on Linux, YMMV
 Viewer = 'nomacs'
