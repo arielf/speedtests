@@ -35,5 +35,5 @@ _Comcast is throttling speeds down in order to push customers to higher-priced p
 ## References:
 
 - [A similar experience by another Comcast subscriber on xfinity forums](https://forums.xfinity.com/t5/Your-Home-Network/Proof-Comcast-Throttling-Internet-Speeds/td-p/3056103)
-
+- [And a related one on Reddit](https://www.reddit.com/r/Comcast/comments/flz5ow/anyone_else_notice_pages_take_forever_to_load/)
 
