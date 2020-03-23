@@ -12,7 +12,7 @@ $(DATA_FILE): my-speedtest.many
 	#
 	# Collect internet speed data into $(DATA_FILE)
 	#
-	mkdir -p $(DATADIR)
+	mkdir -p $(DATA_DIR)
 	./my-speedtest.many > $(DATA_FILE)
 
 chart: speedtests.R $(DATA_FILE)
