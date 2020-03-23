@@ -36,7 +36,7 @@ _In reality, the speed claimed by Comcast is *not representative of real average
 
 _The service levels at lower-tiers, are *significantly worse* when accessing most or even all parts of the internet (except Comcast dedicated and misleading speedtest sites)_
 
-_Even after upgrading the plan by two tiers, The biggest pain is Upload speeds. They are abysmal. Over 50% slower than what they used to be in the past, even at the lowest basic tier.
+_Even after upgrading the plan by two tiers, The biggest pain is Upload speeds. They are abysmal. Over 50% slower than what they used to be in the past, even at the lowest basic tier._
 
 _Comcast is throttling speeds down in order to push customers to higher-priced plans_
 
