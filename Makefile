@@ -1,10 +1,19 @@
+MAKEFLAGS += --no-builtin-rules
+MAKEFLAGS += --no-builtin-variables
+
 YMD = $(shell date +%Y-%m-%d)
 LOGNAME = $(shell logname)
-DATA_DIR = ./Data
+DATA_DIR = Data
 DATA_FILE = $(DATA_DIR)/$(LOGNAME).$(YMD).tsv
 CHART_FILE = $(DATA_DIR)/$(LOGNAME).$(YMD).png
 
 all:: data chart
+
+#
+# The only suffixes we care about
+#
+.SUFFIXES:
+.SUFFIXES: .tsv .png
 
 data: $(DATA_FILE)
 

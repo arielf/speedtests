@@ -25,7 +25,7 @@ Viewer = 'nomacs'
 
 ChartFile = sprintf('%s.distance.png', if (nchar(argvN)) argvN else argv0)
 
-Title = 'Speed Test Data\n(circle-size: log(pingtime))'
+Title = sprintf('Speed Test Data - %s\n(circle-size: log(pingtime))', ymd())
 
 Xlab = 'Distance (Km)'
 Ylab = 'Download speed (Mbit/sec)'
