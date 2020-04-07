@@ -27,7 +27,7 @@ Viewer = 'nomacs'
 
 ChartFile = sprintf("%s.png", if (nchar(argvN)) argvN else argv0)
 
-Title = sprintf('Speed Test Data - %s\n(circle-size: log(pingtime))', ymd())
+Title = sprintf('Speed Test Data - %s\n(circle-size: sqrt(pingtime))', ymd())
 
 Xlab = 'Upload speed (Mbit/sec)'
 Ylab = 'Download speed (Mbit/sec)'
@@ -79,7 +79,7 @@ g <- ggplot(d, aes(x=Up, y=Down, label=Provider, fill=Provider)) +
     ylab(Ylab) +
     geom_point(
         pch=21,
-        size=2.0*log(d$Ping),
+        size=sqrt(d$Ping),
         stroke=0.2,
         alpha=0.7
     ) +
