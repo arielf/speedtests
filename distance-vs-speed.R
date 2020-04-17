@@ -71,10 +71,13 @@ distance <- function(provider) {
 #
 column_names = c('DateTime', 'Ping', 'Up', 'Down', 'Provider')
 data_cmd <- sprintf("grep '^[1-9]' %s", argvN)
-d = fread(data_cmd, sep='\t', h=F)
+d = fread(cmd=data_cmd, sep='\t', h=F)
 setnames(d, column_names)
 
 d$Distance = distance(d$Provider)
+text_labels = sprintf('%s\n%.0f ms',
+                      gsub('\\(', '\n(', d$Provider),
+                      d$Ping)
 
 g <- ggplot(d, aes(x=Distance, y=Down, label=Provider, fill=Provider)) +
     ggtitle(Title) +
@@ -83,12 +86,13 @@ g <- ggplot(d, aes(x=Distance, y=Down, label=Provider, fill=Provider)) +
     ylab(Ylab) +
     geom_point(
         pch=21,
-        size=sqrt(d$Ping),
+        size=2*sqrt(d$Ping),
         stroke=0.2,
         alpha=0.7
     ) +
     scale_x_continuous( breaks=pretty_breaks(n=10) ) +
     scale_y_continuous( breaks=pretty_breaks(n=10) ) +
+    geom_text(x=d$Distance, y=d$Down, label=text_labels, size=1.8) +
     # scale_colour_manual(values=MyColors, aesthetics='colour') +
     scale_fill_manual(values=MyColors, aesthetics='fill') +
     guides(
