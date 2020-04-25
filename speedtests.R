@@ -29,8 +29,8 @@ ChartFile = sprintf("%s.png", if (nchar(argvN)) argvN else argv0)
 
 Title = sprintf('Speed Test Data - %s\n(circle-size: sqrt(pingtime))', ymd())
 
-Xlab = 'Upload speed (Mbit/sec)'
-Ylab = 'Download speed (Mbit/sec)'
+Xlab = 'Upload speed (Mbps)'
+Ylab = 'Download speed (Mbps)'
 
 DPI = 192
 Units = 'cm'

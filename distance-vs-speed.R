@@ -28,7 +28,7 @@ ChartFile = sprintf('%s.distance.png', if (nchar(argvN)) argvN else argv0)
 Title = sprintf('Speed Test Data - %s\n(circle-size: sqrt(pingtime))', ymd())
 
 Xlab = 'Distance (Km)'
-Ylab = 'Download speed (Mbit/sec)'
+Ylab = 'Download speed (Mbps)'
 
 DPI = 192
 Units = 'cm'
