@@ -97,11 +97,12 @@ sub speed_test($) {
     unless (defined $down_speed) {
         my $provider = $Id2Provider{$server_id};
         v("$0: failed to get speedtest data for $provider\n");
-        return;
+        return 0;
     }
     printf "%s\t%.02f\t%.02f\t%.02f\t%s\n",
             $ymd_hm, $ping, $up_speed, $down_speed,
-            "$Id2Provider{$server_id} ($Id2Distance{$server_id} km)"
+            "$Id2Provider{$server_id} ($Id2Distance{$server_id} km)";
+    return 1;
 }
 
 
@@ -113,8 +114,11 @@ init();
 printf STDERR "Collecting speed data on %u data-centers...\n", $TopN;
 
 @ServerIds = closest_n_servers($TopN);
+my $success_count = 0;
 
 for my $server_id (@ServerIds) {
-    speed_test($server_id);
+    $success_count += speed_test($server_id);
 }
 
+my $success_pct = 100.0 * $success_count / scalar(@ServerIds);
+exit ($success_pct >= 75.0);
