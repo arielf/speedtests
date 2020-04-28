@@ -20,6 +20,7 @@
 my $TopN = 20;
 my @ServerIds = ();
 my %Id2Provider = ();
+my $MinSuccessPct = 50.0;
 
 #
 # Ignore some inconsistent, unreliable (e.g. causing errors) outliers
@@ -43,6 +44,9 @@ sub v {
 sub init {
     # trim program name to its basename
     $0 =~ s{.*/}{};
+    if (@ARGV && $ARGV[0] =~ /^[0-9.]+$/) {
+        $MinSuccessPct = $ARGV[0];
+    }
 }
 
 sub closest_n_servers($) {
@@ -79,12 +83,12 @@ sub ymd_hm() {
 
 sub ping_up_down($) {
     my $server_id = shift;
-    my $ouptut = qx{speedtest --server $server_id --simple};
-    my ($ping_time)     = ($ouptut =~ /Ping:\s*([0-9.]+)/);
-    my ($up_speed)      = ($ouptut =~ /Upload:\s*([0-9.]+)/);
-    my ($down_speed)    = ($ouptut =~ /Download:\s*([0-9.]+)/);
+    my $output = qx{speedtest --secure --server $server_id --simple};
+    my ($ping_time)     = ($output =~ /Ping:\s*([0-9.]+)/);
+    my ($up_speed)      = ($output =~ /Upload:\s*([0-9.]+)/);
+    my ($down_speed)    = ($output =~ /Download:\s*([0-9.]+)/);
 
-    ($ping_time, $up_speed, $down_speed);
+    ($output, $ping_time, $up_speed, $down_speed);
 }
 
 sub speed_test($) {
@@ -93,10 +97,12 @@ sub speed_test($) {
     printf STDERR "- %s ...\n", $Id2Provider{$server_id};
 
     my $ymd_hm = ymd_hm();
-    my ($ping, $up_speed, $down_speed) = ping_up_down($server_id);
+    my ($output, $ping, $up_speed, $down_speed) = ping_up_down($server_id);
     unless (defined $down_speed) {
         my $provider = $Id2Provider{$server_id};
-        v("$0: failed to get speedtest data for $provider\n");
+        printf STDERR
+            "$0: failed to get speedtest data for $provider\n" .
+            "Full output from speedtest-cli:\n%s\n", $output;
         return 0;
     }
     printf "%s\t%.02f\t%.02f\t%.02f\t%s\n",
@@ -121,4 +127,10 @@ for my $server_id (@ServerIds) {
 }
 
 my $success_pct = 100.0 * $success_count / scalar(@ServerIds);
-exit ($success_pct >= 75.0);
+printf STDERR
+        "speed-test by server success rate: %u/%u = %.2f%%\n",
+            $success_count, scalar(@ServerIds), $success_pct;
+
+# exit status == 0 means success in the calling shell,
+# so need to invert the condition
+exit ($success_pct < $MinSuccessPct);
