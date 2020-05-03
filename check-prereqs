@@ -4,7 +4,7 @@
 # Check that we have all packages/libs needed for our coed to run
 #
 
-NEEDED_BASE_PROGS='perl speedtest-cli Rscript'
+NEEDED_BASE_PROGS='make perl speedtest-cli Rscript'
 NEEDED_R_PKGS='ggplot2 data.table scales'
 
 # stderr <arg>...
