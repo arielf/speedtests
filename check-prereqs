@@ -1,0 +1,75 @@
+#!/bin/bash
+# vim: sw=4 ts=4 expandtab
+#
+# Check that we have all packages/libs needed for our coed to run
+#
+
+NEEDED_BASE_PROGS='perl speedtest-cli Rscript'
+NEEDED_R_PKGS='ggplot2 data.table scales'
+
+# stderr <arg>...
+#   print args to stderr (newline added)
+#
+function stderr() {
+    echo "$@" >&2
+}
+
+#
+# map package-name -> library() arg
+#
+function pkg2import() {
+    local pkg="$1"
+    pkg=$(echo "$pkg" | sed 's/[<=>].*$//')
+    case "$pkg" in
+        ('r-cran-data.table') echo 'data.table'; return ;;
+        ('r-cran-ggplot2') echo 'ggplot2'; return ;;
+        ('r-cran-scales') echo 'scales'; return ;;
+
+        # For any other name, package & module name assumed to be the same
+        (*) echo "$pkg"; return ;;
+    esac
+}
+
+
+function r-has-module() {
+    local module_name="${1:='r-is-missing-module-arg'}"
+    Rscript --vanilla -e "library($module_name)" 2>/dev/null
+    if [[ "$?" != 0 ]]; then
+        stderr "R module $module_name is missing in this env"
+        return 1
+    fi
+    return 0
+}
+
+
+function check-only() {
+    local error_count=0
+
+    for prog in $NEEDED_BASE_PROGS; do
+        if command -v "$prog" >/dev/null 2>&1; then
+            echo "Cool: base program $prog is installed"
+        else
+            ((++error_count))
+        fi
+    done
+    for pkg in ${NEEDED_R_PKGS}; do
+        local module="$(pkg2import "$pkg")"
+        if ! r-has-module "$module"; then
+            ((++error_count))
+        else
+            echo "Cool: R package $pkg is installed"
+        fi
+    done
+    if [[ $error_count > 0 ]]; then
+        stderr 'This env is missing some prereqs. Try running:'
+        stderr '    sudo apt-get install make perl speedtest-cli'
+        stderr '    sudo apt-get install r-base r-cran-data.table r-cran-ggplot2 r-cran-scales'
+    fi
+    exit $error_count
+}
+
+#
+# -- main
+#
+check-only
+

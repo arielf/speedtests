@@ -7,13 +7,16 @@ DATA_DIR = Data
 DATA_FILE = $(DATA_DIR)/$(LOGNAME).$(YMD).tsv
 CHART_FILE = $(DATA_DIR)/$(LOGNAME).$(YMD).png
 
-all:: data chart
+all:: prereqs data chart
 
 #
 # The only suffixes we care about
 #
 .SUFFIXES:
 .SUFFIXES: .tsv .png
+
+prereqs:
+	./check-prereqs
 
 data: $(DATA_FILE)
 
