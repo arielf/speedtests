@@ -105,9 +105,15 @@ sub speed_test($) {
             "Full output from speedtest-cli:\n%s\n", $output;
         return 0;
     }
-    printf "%s\t%.02f\t%.02f\t%.02f\t%s\n",
+    my $line = sprintf "%s\t%.02f\t%.02f\t%.02f\t%s\n",
             $ymd_hm, $ping, $up_speed, $down_speed,
             "$Id2Provider{$server_id} ($Id2Distance{$server_id} km)";
+
+    # To user on terminal:
+    print STDERR $line;
+
+    # To data file:
+    print STDOUT $line;
     return 1;
 }
 
@@ -118,6 +124,7 @@ sub speed_test($) {
 init();
 
 printf STDERR "Collecting speed data on %u data-centers...\n", $TopN;
+printf STDERR "YYYY-MM-DD-HH:MM     Ping(ms) Upload  Download  Provider (Distance)\n";
 
 @ServerIds = closest_n_servers($TopN);
 my $success_count = 0;
