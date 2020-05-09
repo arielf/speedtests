@@ -110,7 +110,9 @@ sub speed_test($) {
             "$Id2Provider{$server_id} ($Id2Distance{$server_id} km)";
 
     # To user on terminal:
-    print STDERR $line;
+    if (-t STDERR && ! -t STDOUT) {     # Avoid duplicating data
+        print STDERR $line;
+    }
 
     # To data file:
     print STDOUT $line;
