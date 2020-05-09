@@ -4,23 +4,34 @@ This repository [github.com://arielf/speedtests](https://github.com/arielf/speed
 
 ## HOWTO
 
+    #
     # Install prerequisites
+    #
     sudo apt-get install make perl speedtest-cli
     sudo apt-get install r-base r-cran-data.table r-cran-ggplot2 r-cran-scales
 
+    #
     # Clone this repository, and cd to it
+    #
     git clone https://github.com/arielf/speedtests
     cd speedtests
 
-    # Generate a N-row data-set on the N-closest speedtest supporting data-centers
-    ./my-speedtest.many > mydata.tsv
+    #
+    # Generate N-row data-set for N-closest speedtest data-centers
+    #
+    make data
     
+    #
     # Generate a chart from the data-set
-    ./speedtests.R mydata.tsv
+    #
+    make chart
 
-    # Chart should now be in "mydata.tsv.png"
+    #
+    # Today's speed-test chart should be created at:
+    #
+    Data/<yourusername>.<yyyy-mm-dd>.tsv.png
 
-##### flow explanation:
+#### flow explanation:
 
 -  The `speedtest` utility (`apt install speedtest-cli`) collects speed data from various data-centers
 - `my-speedtest.many` is a perl-script wrapper around `speedtest`. It figures out the closest N data-centers & checks the speed to each of them.
