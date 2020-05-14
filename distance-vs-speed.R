@@ -4,7 +4,6 @@
 #
 library(ggplot2)
 library(data.table)
-library(ggthemes)
 library(scales)         # for pretty_breaks()
 
 eprintf <- function(...) cat(sprintf(...), sep='', file=stderr())
