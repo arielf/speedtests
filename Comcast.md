@@ -50,9 +50,9 @@ I called Comcast sales, talked to a nice and helpful person, and switched to the
 
 It is called "Blast Pro+"
 
-The modem was reset from remote (by Comcast), retrained, blinked till lights went stable. One stable, the receive LED is blue, indicating DOCSYS-3.1 multiple-channel bonding, while the send (upload) LED remains green (no bonding).
+The modem was reset from remote (by Comcast), retrained, blinked till lights went stable. Once stable, the receive LED turns blue, indicating DOCSYS-3.1 multiple-channel bonding, while the send (upload) LED remains green (no bonding).
 
-My Download speed is now approx 300Mbps vs. many data-centers.
+My Download speed is now around ~300 Mbps vs. multiple data-centers.
 
 Upload speeds improved a bit too but remain abysmal. Old speed: ~2.5Mbps, new speed: ~3.2Mbps.
 
