@@ -42,6 +42,25 @@ _Even after upgrading the plan by two tiers, The biggest pain is upload speeds. 
 
 _Comcast is throttling speeds down in order to push customers to higher-priced plans_
 
+## Update 2020-05-27
+
+Seeing that my upload speeds remain very low, I tried upgrading my Comcast plan.
+
+I called Comcast sales, talked to a nice and helpful person, and switched to their 2nd best tier available in my area.
+
+It is called "Blast Pro+"
+
+The modem was reset from remote (by Comcast), retrained, blinked till lights went stable. One stable, the receive LED is blue, indicating DOCSYS-3.1 multiple-channel bonding, while the send (upload) LED remains green (no bonding).
+
+My Download speed is now approx 300Mbps vs. many data-centers.
+
+Upload speeds improved a bit too but remain abysmal. Old speed: ~2.5Mbps, new speed: ~3.2Mbps.
+
+![2020-05 Blast-Pro+ updated speedtests chart](speedtests.2020-05.png)
+
+Wondering if I should try upgrading to the fastest (Gigabit) tier plan.
+
+
 ## References:
 
 - [A similar experience by another Comcast subscriber on xfinity forums](https://forums.xfinity.com/t5/Your-Home-Network/Proof-Comcast-Throttling-Internet-Speeds/td-p/3056103)
