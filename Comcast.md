@@ -40,7 +40,9 @@ _The service levels at lower-tiers, are *significantly worse* when accessing mos
 
 _Even after upgrading the plan by two tiers, The biggest pain is upload speeds. They are abysmal. Over 50% slower than what they used to be in the past at the lowest basic tier._
 
-_Comcast is throttling speeds down in order to push customers to higher-priced plans_
+_Comcast may be throttling speeds down in order to push customers to higher-priced plans_
+
+_Comcast is not allocating enough bandwidth to the upstream channels. The up vs down ratios are way too asymmetric_ 
 
 ## Update 2020-05-27
 
@@ -54,11 +56,11 @@ The modem was reset from remote (by Comcast), retrained, blinked till lights wen
 
 My Download speed is now around ~300 Mbps vs. multiple data-centers.
 
-Upload speeds improved a bit too but remain abysmal. Old speed: ~2.5Mbps, new speed: ~3.2Mbps.
+Upload speeds improved a bit too but remain abysmal. Old speed: ~2.5 Mbps, new speed: ~3.2 Mbps.
 
 ![2020-05 Blast-Pro+ updated speedtests chart](speedtests.2020-05.png)
 
-Wondering if I should try upgrading to the fastest (Gigabit) tier plan.
+Wondering if I should try upgrading to the fastest (Gigabit) tier plan, and if I do, by how much will my upload speed improve.
 
 
 ## References:
