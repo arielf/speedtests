@@ -26,14 +26,16 @@ Viewer = 'nomacs'
 
 ChartFile = sprintf("%s.png", if (nchar(argvN)) argvN else argv0)
 
-Title = sprintf('Speed Test Data - %s\n(circle-size: sqrt(pingtime))', ymd())
+Title = sprintf(
+    'Speed Test Data - %s\nCircle-size: inverse pingtime (bigger is better)',
+    ymd())
 
 Xlab = 'Upload speed (Mbps)'
 Ylab = 'Download speed (Mbps)'
 
 DPI = 192
 Units = 'cm'
-Width = 20 
+Width = 20
 Height = 16
 
 MyColors = c(
@@ -81,7 +83,7 @@ g <- ggplot(d, aes(x=Up, y=Down, label=Provider, fill=Provider)) +
     ylab(Ylab) +
     geom_point(
         pch=21,
-        size=2*sqrt(d$Ping),
+        size=300.00/d$Ping,
         stroke=0.2,
         alpha=0.7
     ) +
@@ -94,7 +96,7 @@ g <- ggplot(d, aes(x=Up, y=Down, label=Provider, fill=Provider)) +
     guides(
         fill=guide_legend(ncol=1),
         # SE-tip doesn't seem to work (legend circles remain small)
-        shape=guide_legend(override.aes=list(size=5))
+        shape=guide_legend(override.aes=list(size=6))
     )
 
 ggsave(
