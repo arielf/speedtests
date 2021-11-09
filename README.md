@@ -1,13 +1,13 @@
 # Internet speed data
 
-This repository [github.com://arielf/speedtests](https://github.com/arielf/speedtests) contains data about internet-speeds and code to allow anyone to reproduce the results. 
+This repository [github.com://arielf/speedtests](https://github.com/arielf/speedtests) contains data about internet-speeds and code to allow anyone to reproduce the results.
 
 ## HOWTO
 
     #
     # Install prerequisites
     #
-    sudo apt-get install make perl speedtest-cli
+    sudo apt-get install make coreutils perl speedtest-cli
     sudo apt-get install r-base r-cran-data.table r-cran-ggplot2 r-cran-scales
 
     #
@@ -20,7 +20,7 @@ This repository [github.com://arielf/speedtests](https://github.com/arielf/speed
     # Generate N-row data-set for N-closest speedtest data-centers
     #
     make data
-    
+
     #
     # Generate a chart from the data-set
     #
@@ -52,7 +52,7 @@ When testing my speed using Comcast own speed-test service, the results say I'm 
 
 Here's an example of a screenshot from a test by Ookla (aka speedtest.net, owned by Comcast) where all numbers look good and as I expect them:
 
-![Ookla speed test 2020-01-26](Ookla-2020-01-26.png) 
+![Ookla speed test 2020-01-26](Ookla-2020-01-26.png)
 
 However whenever I test my speeds using other independent speed-test providers, my results are significantly and consistently worse.
 
