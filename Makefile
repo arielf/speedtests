@@ -2,7 +2,7 @@ MAKEFLAGS += --no-builtin-rules
 MAKEFLAGS += --no-builtin-variables
 
 YMD = $(shell date +%Y-%m-%d)
-LOGNAME = $(shell logname)
+LOGNAME = $(shell logname || echo "$$LOGNAME" || echo "$$USER")
 DATA_DIR = Data
 DATA_FILE = $(DATA_DIR)/$(LOGNAME).$(YMD).tsv
 CHART_FILE = $(DATA_DIR)/$(LOGNAME).$(YMD).png
