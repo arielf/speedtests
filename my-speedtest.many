@@ -60,9 +60,10 @@ sub init {
 sub closest_n_servers($) {
     my $n = shift;
     my @server_ids = ();
+    my $list_command = 'speedtest --list';
 
     my $good_count = 0;
-    open(my $inp, "speedtest --list |");
+    open(my $inp, "$list_command |");
     while (my $line = <$inp>) {
         next if ($line =~ /$UnreliableServers/o);
 
@@ -81,6 +82,10 @@ sub closest_n_servers($) {
         last if ($good_count >= $n);
     }
     close $inp;
+    unless (@server_ids) {
+        die "closest_n_servers($n): unable to get any servers\n" .
+            "Something's wrong with '$list_command'?\n";
+    }
     @server_ids;
 }
 
@@ -160,4 +165,4 @@ printf STDERR
 
 # exit status == 0 means success in the calling shell,
 # so need to invert the condition
-exit ($success_pct < $MinSuccessPct);
+exit (! ($success_count > 0));

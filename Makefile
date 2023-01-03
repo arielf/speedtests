@@ -2,7 +2,7 @@ MAKEFLAGS += --no-builtin-rules
 MAKEFLAGS += --no-builtin-variables
 
 YMD = $(shell date +%Y-%m-%d)
-LOGNAME = $(shell logname || echo "$$LOGNAME" || echo "$$USER")
+LOGNAME = $(shell echo "$${LOGNAME:-$${USER:-UNKNOWN}}")
 DATA_DIR = Data
 DATA_FILE = $(DATA_DIR)/$(LOGNAME).$(YMD).tsv
 CHART_FILE = $(DATA_DIR)/$(LOGNAME).$(YMD).png
@@ -24,7 +24,7 @@ $(DATA_FILE): my-speedtest.many
 	#
 	# Collect internet speed data into $(DATA_FILE)
 	#
-	mkdir -p $(DATA_DIR)
+	mkdir -vp $(DATA_DIR)
 	./my-speedtest.many > $(DATA_FILE).tmp && \
 		mv $(DATA_FILE).tmp $(DATA_FILE)
 
