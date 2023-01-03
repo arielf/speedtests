@@ -47,7 +47,7 @@ function check-only() {
 
     for prog in $NEEDED_BASE_PROGS; do
         if command -v "$prog" >/dev/null 2>&1; then
-            echo "Cool: base program $prog is installed"
+            echo "base program $prog is installed: ok"
         else
             ((++error_count))
         fi
@@ -57,7 +57,7 @@ function check-only() {
         if ! r-has-module "$module"; then
             ((++error_count))
         else
-            echo "Cool: R package $pkg is installed"
+            echo "R package $pkg is installed: ok"
         fi
     done
     if [[ $error_count > 0 ]]; then
@@ -72,4 +72,3 @@ function check-only() {
 # -- main
 #
 check-only
-
