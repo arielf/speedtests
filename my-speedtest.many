@@ -17,9 +17,14 @@
 # To read the docs after installation:
 #   man speedtest
 #
+use Getopt::Std;
+use vars qw($opt_v);
+
 my $TopN = 20;
 my @ServerIds = ();
 my %Id2Provider = ();
+my %Id2Distance = ();
+my %Id2Units = ();
 my $MinSuccessPct = 50.0;
 
 #
@@ -34,6 +39,7 @@ my @UnreliableServers = qw(
 my $UnreliableServers = sprintf('(%s)', join('|', @UnreliableServers));
 
 sub v {
+    return unless ($opt_v);
     if (@_ == 1) {
         print STDERR @_;
     } else {
@@ -44,6 +50,7 @@ sub v {
 sub init {
     # trim program name to its basename
     $0 =~ s{.*/}{};
+    getopts('v');
     if (@ARGV && $ARGV[0] =~ /^[0-9.]+$/) {
         $MinSuccessPct = $ARGV[0];
     }
@@ -58,16 +65,17 @@ sub closest_n_servers($) {
     while (my $line = <$inp>) {
         next if ($line =~ /$UnreliableServers/o);
 
-        if ($line =~ /^\s*(\d+)\)\s*(.*?) \[([0-9.]+) km/) {
-            my ($server_id, $provider, $distance) = ($1, $2, $3);
+        if ($line =~ /^\s*(\d+)\)\s*(.*?) \[([0-9.]+)\s*(\w+)\s*\]/) {
+            my ($server_id, $provider, $distance, $units) = ($1, $2, $3, $4);
             $provider =~ s/\s*\([^)]+\)\s*//g;
 
             push(@server_ids, $server_id);
             $Id2Provider{$server_id} = $provider;
             $Id2Distance{$server_id} = $distance;
+            $Id2Units{$server_id} = $units;
 
             $good_count++;
-            # printf STDERR "%s\t%s\t%s km\n", $server_id, $provider, $distance;
+            v("%s\t%s\t%s %s\n", $server_id, $provider, $distance, $units);
         }
         last if ($good_count >= $n);
     }
@@ -83,7 +91,9 @@ sub ymd_hm() {
 
 sub ping_up_down($) {
     my $server_id = shift;
-    my $output = qx{speedtest --secure --server $server_id --simple};
+    my $output = qx{speedtest --server $server_id --simple};
+    # '--secure' started failing... 2022
+    # my $output = qx{speedtest --secure --server $server_id --simple};
     my ($ping_time)     = ($output =~ /Ping:\s*([0-9.]+)/);
     my ($up_speed)      = ($output =~ /Upload:\s*([0-9.]+)/);
     my ($down_speed)    = ($output =~ /Download:\s*([0-9.]+)/);
@@ -93,6 +103,11 @@ sub ping_up_down($) {
 
 sub speed_test($) {
     my $server_id = shift;
+
+    if ($server_id !~ /^\d+$/) {
+        print STDERR "$0: speed_test: expecting a server_id (int)\n";
+        return 0;
+    }
 
     printf STDERR "- %s ...\n", $Id2Provider{$server_id};
 
@@ -105,9 +120,12 @@ sub speed_test($) {
             "Full output from speedtest-cli:\n%s\n", $output;
         return 0;
     }
-    my $line = sprintf "%s\t%.02f\t%.02f\t%.02f\t%s\n",
+    my $distance = sprintf " %s %s",
+                           $Id2Distance{$server_id},
+                           $Id2Units{$server_id};
+    my $line = sprintf "%s\t%.02f\t%.02f\t%.02f\t%s %s\n",
             $ymd_hm, $ping, $up_speed, $down_speed,
-            "$Id2Provider{$server_id} ($Id2Distance{$server_id} km)";
+            $Id2Provider{$server_id}, $distance;
 
     # To user on terminal:
     if (-t STDERR && ! -t STDOUT) {     # Avoid duplicating data
@@ -118,7 +136,6 @@ sub speed_test($) {
     print STDOUT $line;
     return 1;
 }
-
 
 #
 # -- main
