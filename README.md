@@ -31,7 +31,7 @@ This repository [github.com://arielf/speedtests](https://github.com/arielf/speed
     #
     Data/<yourusername>.<yyyy-mm-dd>.tsv.png
 
-#### flow explanation:
+#### Flow explanation:
 
 -  The `speedtest` utility (`apt install speedtest-cli`) collects speed data from various data-centers
 - `my-speedtest.many` is a perl-script wrapper around `speedtest`. It figures out the closest N data-centers & checks the speed to each of them.
