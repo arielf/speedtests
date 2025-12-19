@@ -7,8 +7,8 @@ This repository [github.com://arielf/speedtests](https://github.com/arielf/speed
     #
     # Install prerequisites
     #
-    sudo apt-get install make coreutils perl speedtest-cli
-    sudo apt-get install r-base r-cran-data.table r-cran-ggplot2 r-cran-scales
+    sudo apt install make coreutils perl speedtest-cli
+    sudo apt install r-base r-cran-data.table r-cran-ggplot2 r-cran-scales
 
     #
     # Clone this repository, and cd to it
